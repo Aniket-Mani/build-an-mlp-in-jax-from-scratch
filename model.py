@@ -162,13 +162,25 @@ import jax.numpy as jnp
 
 def sgd_update_params(params, grads, learning_rate):
     # TODO: apply one SGD step to every parameter using its gradient and a learning rate
-    return [
-        {
-            "W":p["W"] - learning_rate * g["W"],
-            "b":p["b"] - learning_rate * g["b"]
-        }
-        for p,g in zip(params, grads)
-    ]
+    # return [
+    #     {
+    #         "W":p["W"] - learning_rate * g["W"],
+    #         "b":p["b"] - learning_rate * g["b"]
+    #     }
+    #     for p,g in zip(params, grads)
+    # ]
+
+    #alternatively
+
+    updated = []
+
+    for i in range(len(params)):
+        layer = {}
+        layer["W"] = params[i]["W"] - learning_rate* grads[i]["W"]
+        layer["b"] = params[i]["b"] - learning_rate* grads[i]["b"]
+        updated.append(layer)
+    
+    return updated
 
 # Step 19 - training_step (not yet solved)
 # TODO: implement
