@@ -138,8 +138,15 @@ def classification_accuracy(logits, labels):
     equal = pred == labels
     return jnp.mean(equal)
 
-# Step 16 - loss_fn_of_params (not yet solved)
-# TODO: implement
+# Step 16 - loss_fn_of_params
+import jax
+import jax.numpy as jnp
+
+def loss_fn_of_params(params, x, one_hot_targets):
+    # TODO: return scalar cross-entropy loss as a function of params, ready for jax.grad
+    forward = mlp_forward(params, x)
+    loss =  cross_entropy_loss(forward, one_hot_targets)
+    return loss
 
 # Step 17 - compute_param_grads (not yet solved)
 # TODO: implement
